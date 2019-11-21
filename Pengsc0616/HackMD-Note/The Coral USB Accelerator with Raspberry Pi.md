@@ -4,7 +4,7 @@
 ## `1. 從序列埠進到 Raspberry Pi`
 
 #### a. 依照下圖將pi裝上"PL2303HXD USB轉TTL傳輸線"，並接上筆電
-<img src="https://i.imgur.com/gB9atUg.png" width="100" height="100">
+<img src="https://i.imgur.com/gB9atUg.png" width="50%" height="50%">
 ![test image size](https://i.imgur.com/gB9atUg.png){:height="50%" width="50%"}
 
 #### b. 將pi連接好電源線，開機(紅燈會亮，黃光會閃)
