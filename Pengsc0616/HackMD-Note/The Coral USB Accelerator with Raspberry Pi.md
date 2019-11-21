@@ -4,16 +4,16 @@
 ## `1. 從序列埠進到 Raspberry Pi`
 
 #### a. 依照下圖將pi裝上"PL2303HXD USB轉TTL傳輸線"，並接上筆電
-![](https://i.imgur.com/gB9atUg.png =70%x)
+![image](https://i.imgur.com/gB9atUg.png =70%x)
 
 #### b. 將pi連接好電源線，開機(紅燈會亮，黃光會閃)
 #### c. 查詢筆電的Device Manager確認你的pi接上到COM幾(以下圖為例 為COM3)
-![](https://i.imgur.com/3jWZh2M.png =70%x)
+![image](https://i.imgur.com/3jWZh2M.png =70%x)
 
 #### d. 開putty，點選Serial
 Serial line填你在上一部查的COM，Speed填115200，如下圖所示
 點選右下角的Open開啟連結
-![](https://i.imgur.com/tKZJdT2.png =70%x)
+![image](https://i.imgur.com/tKZJdT2.png =70%x)
 
 ### Hint: 如果連上後畫面全黑，可以試試按Enter，或重開pi
 
@@ -22,13 +22,13 @@ Serial line填你在上一部查的COM，Speed填115200，如下圖所示
 ## `2. 設定網路`
     $ ifconfig wlan0
     => 發現沒網路
-    
+
     $ sudo iwlist wlan0 scan
     => 查詢現有的網路，找到想要的那個
-    
+
     $ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
-    
-    在裡頭填上資料，如下: 
+
+    在裡頭填上資料，如下:
     ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
     update_config=1
 
@@ -41,25 +41,25 @@ Serial line填你在上一部查的COM，Speed填115200，如下圖所示
         auth_alg=OPEN
     }
     =>按ctrl+X =>按Y 儲存跳離檔案
-    
+
     $ sudo ifdown wlan0
     $ sudo ifup wlan0
     $ sudo kill -9 $(ps -ef | grep wpa | awk '{print $2}')
     $ sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
     $ sudo dhclient
     =>這5個指令中間有錯誤訊息皆忽略
-    
+
     $ ifconfig wlan0
     => 查看網路有沒有了
 
 ### Hint1: sudo reboot試試
-### Hint2: 可以把ifdown和ifup兩行程式換成 ⇒ 
+### Hint2: 可以把ifdown和ifup兩行程式換成 ⇒
     $ sudo ip link set wlan0 down
     $ sudo ip link set wlan0 up   
 ### Hint3: 出錯的話 試試以下作法
     $ sudo nano /etc/network/interfaces
-    
-    在裡頭填上資料，如下: 
+
+    在裡頭填上資料，如下:
     auto lo
 
     iface lo inet loopback
@@ -77,10 +77,10 @@ Serial line填你在上一部查的COM，Speed填115200，如下圖所示
 #### a. 在pi上打以下指令
     $ sudo apt-get install tightvncserver -y
     => 安裝tightvncerver
-    
+
     $ vncserver
     => 設定密碼等等等
-    
+
     $ ps a | grep vnc
     => 確認vnc server是開在哪一個DISPLAY上
 #### b. 在筆電安裝VNC viewer，步驟如下
@@ -99,16 +99,16 @@ DISPLAY NUMBER == 1
 ### Hint3: 出錯的話 試試以下作法
     $ ps aux | grep -i apt
     =>查看有沒有process在工作
-    
+
     $ sudo kill -9 <process id>
     => 把他們停掉
-    
+
     $ sudo killall apt apt-get
     => 停掉所有的工作
 ### Hint4: 出錯的話，不知道有沒有用但可以試試看
     $ sudo killall apt apt-get
-    $ sudo rm /var/lib/apt/lists/lock 
-    $ sudo rm /var/cache/apt/archives/lock 
+    $ sudo rm /var/lib/apt/lists/lock
+    $ sudo rm /var/cache/apt/archives/lock
     $ sudo rm /var/lib/dpkg/lock*
     $ sudo dpkg --configure -a
     $ sudo apt update
@@ -119,8 +119,8 @@ DISPLAY NUMBER == 1
 #### a. 軟體設定
 
     $ sudo raspi-config
-    
-    選擇Interfacing Options 
+
+    選擇Interfacing Options
     將Camera和I2C都開啟    //I2C記得開，很重要
     她會自動重開機，就讓她做
 
@@ -128,21 +128,21 @@ DISPLAY NUMBER == 1
 
 按照這個 https://www.youtube.com/watch?v=GImeVqHQzsE&feature=emb_title 影片裝上相機
 
-我的裝好的樣子: 
-![](https://i.imgur.com/4H47wgX.jpg =70%x)
+我的裝好的樣子:
+![image](https://i.imgur.com/4H47wgX.jpg =70%x)
 
     $ raspistill -o haha.png
     => 拍照
-    
+
     $ eog haha.png
     => 查看拍的照片有沒有成功
-    
-### Hint: png不行，就換jpg試試 
-    
+
+### Hint: png不行，就換jpg試試
+
 ------------------
 
 ## `5. 實作 USB Accelerator`
-#### a. 安裝Edge TPU runtime，如下: 
+#### a. 安裝Edge TPU runtime，如下:
     $ echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
 
     $ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
@@ -170,11 +170,11 @@ DISPLAY NUMBER == 1
 
 到這個 https://www.tensorflow.org/lite/guide/python 網站
 點選下載你規格的whl檔
-    
+
     $ pip3 install tflite_runtime-1.14.0-cp37-cp37m-linux_armv7l.whl
     => 這行可能會跑很久，要有耐心
 
-#### c. 額外弄一些東東，不然會出錯 
+#### c. 額外弄一些東東，不然會出錯
 
 `*切記: 以下所有指令，如果發現出錯`
 `sudo就加-H, wget就加no-check-certificate，可能本來不行的就成功了`
@@ -182,22 +182,22 @@ DISPLAY NUMBER == 1
     $ strings /usr/lib/arm-linux-gnueabihf/libstdc++.so.6 | grep GLIBCXX
     => 查看當前GLIBCXX的版本
     => 若缺少GLIBCXX_3.4.22，做以下指令
-    
+
     $ sudo apt-get install libstdc++6
-    $ sudo add-apt-repository ppa:ubuntu-toolchain-r/test 
+    $ sudo add-apt-repository ppa:ubuntu-toolchain-r/test
     $ sudo apt-get update
     $ sudo apt-get upgrade
     $ sudo apt-get dist-upgrade
-    
+
     $ strings /usr/lib/arm-linux-gnueabihf/libstdc++.so.6 | grep GLIBCXX
     => 看看有沒有新加了
 
-#### d. 這個斷落的內容，是我在實作時有加的東西，但我不知道有沒有影響，所以等你出錯時，再試著加加看 
+#### d. 這個斷落的內容，是我在實作時有加的東西，但我不知道有沒有影響，所以等你出錯時，再試著加加看
 
     $ sudo apt-get install -y libhdf5-dev libc-ares-dev libeigen3-dev
     $ sudo pip3 install keras_applications==1.0.7 --no-deps
     $ sudo pip3 install keras_preprocessing==1.0.9 --no-deps
-    
+
     $ wget -O numpy-1.16.1-cp35-cp35m-linux_armv7l.whl https://www.piwheels.hostedpi.com/simple/numpy/numpy-1.16.1-cp35-cp35m-linux_armv7l.whl
     $ pip3 install numpy-1.16-1.whl
 
@@ -213,16 +213,16 @@ DISPLAY NUMBER == 1
 
     $ mkdir coral && cd coral
     $ git clone https://github.com/google-coral/tflite.git
-    
+
     $ cd tflite/python/examples/classification
     $ bash install_requirements.sh
     => 這行可能會跑很久，要有耐心(也可能很快拉XD)
-    
+
     $ python3 classify_image.py \
     --model models/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite \
     --labels models/inat_bird_labels.txt \
     --input images/parrot.jpg
-    
+
 如果跑出以下類似訊息，就代表成功了!
 
     INFO: Initialized TensorFlow Lite runtime.
@@ -235,16 +235,16 @@ DISPLAY NUMBER == 1
     2.9ms
     -------RESULTS--------
     Ara macao (Scarlet Macaw): 0.76562
-    
-我們的成果: 
-![](https://i.imgur.com/G27pr5N.png)
 
-    
+我們的成果:
+![image](https://i.imgur.com/G27pr5N.png)
+
+
 ### Hint: 出錯的話，試試這個給他run，可能會有奇效
     $ apt-get install -y \
     python3 \
     python-dev \
-    python3-dev 
+    python3-dev
 
 -----------------------------
 
