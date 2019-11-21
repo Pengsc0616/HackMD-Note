@@ -13,7 +13,7 @@
 #### d. 開putty，點選Serial
 Serial line填你在上一部查的COM，Speed填115200，如下圖所示
 點選右下角的Open開啟連結
-![image](https://i.imgur.com/tKZJdT2.png)
+![image](https://i.imgur.com/tKZJdT2.png=)
 
 ### Hint: 如果連上後畫面全黑，可以試試按Enter，或重開pi
 
