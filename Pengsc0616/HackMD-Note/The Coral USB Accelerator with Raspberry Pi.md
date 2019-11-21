@@ -4,11 +4,11 @@
 ## `1. 從序列埠進到 Raspberry Pi`
 
 #### a. 依照下圖將pi裝上"PL2303HXD USB轉TTL傳輸線"，並接上筆電
-![image](https://i.imgur.com/gB9atUg.png =50X50)
+![image](https://i.imgur.com/gB9atUg.png=50X50)
 
 #### b. 將pi連接好電源線，開機(紅燈會亮，黃光會閃)
 #### c. 查詢筆電的Device Manager確認你的pi接上到COM幾(以下圖為例 為COM3)
-![image](https://i.imgur.com/3jWZh2M.png =50X50)
+![image](https://i.imgur.com/3jWZh2M.png=50X50)
 
 #### d. 開putty，點選Serial
 Serial line填你在上一部查的COM，Speed填115200，如下圖所示
