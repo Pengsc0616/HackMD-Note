@@ -4,11 +4,11 @@
 ## `1. 從序列埠進到 Raspberry Pi`
 
 #### a. 依照下圖將pi裝上"PL2303HXD USB轉TTL傳輸線"，並接上筆電
-![image](https://i.imgur.com/gB9atUg.png =70%x)
+![image](https://i.imgur.com/gB9atUg.png =50X50)
 
 #### b. 將pi連接好電源線，開機(紅燈會亮，黃光會閃)
 #### c. 查詢筆電的Device Manager確認你的pi接上到COM幾(以下圖為例 為COM3)
-![image](https://i.imgur.com/3jWZh2M.png =70%x)
+![image](https://i.imgur.com/3jWZh2M.png =50X50)
 
 #### d. 開putty，點選Serial
 Serial line填你在上一部查的COM，Speed填115200，如下圖所示
@@ -129,7 +129,7 @@ DISPLAY NUMBER == 1
 按照這個 https://www.youtube.com/watch?v=GImeVqHQzsE&feature=emb_title 影片裝上相機
 
 我的裝好的樣子:
-![image](https://i.imgur.com/4H47wgX.jpg =70%x)
+![image](https://i.imgur.com/4H47wgX.jpg =50X50)
 
     $ raspistill -o haha.png
     => 拍照
@@ -151,7 +151,7 @@ DISPLAY NUMBER == 1
     $ sudo apt-get install libedgetpu1-std
 把USB Accelerator接上raspberry pi
 我接好的雛形:
-![](https://i.imgur.com/SvIH12c.jpg =70%x)
+![](https://i.imgur.com/SvIH12c.jpg =50X50)
 
 
 
@@ -237,7 +237,7 @@ DISPLAY NUMBER == 1
     Ara macao (Scarlet Macaw): 0.76562
 
 我們的成果:
-![image](https://i.imgur.com/G27pr5N.png)
+![image](https://i.imgur.com/G27pr5N.png = 80X80)
 
 
 ### Hint: 出錯的話，試試這個給他run，可能會有奇效
